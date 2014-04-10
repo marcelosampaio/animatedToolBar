@@ -15,6 +15,12 @@
 @implementation ViewController
 
 #pragma mark - Initialization
+
+-(void)viewWillAppear:(BOOL)animated {
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,12 +40,6 @@
 }
 
 #pragma mark - Orientation Initialization
--(void)viewWillAppear:(BOOL)animated {
-    NSLog(@"view WILL APPEAR");
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
-}
-
 -(void)detectOrientation {
     
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait)
@@ -80,7 +80,6 @@
 #pragma mark - Debug Methods
 -(void)dropTestImage
 {
-    NSLog(@"HEIGHT=%f",self.view.frame.size.height);
     
     UIImageView *testImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width/2, -100, 50, 50)];
     testImageView.backgroundColor=[UIColor redColor];
