@@ -14,12 +14,19 @@
 
 @implementation ViewController
 
+#pragma mark - Initialization
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSLog(@"initial commit");
 }
 
+
+
+
+#pragma mark - Memory Warning
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
