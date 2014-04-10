@@ -131,6 +131,9 @@
         }
     }
 
+    // Remove views from super view
+    [self removeAllViewsFromSuperView];
+    
     // Debug purposes
     [self dropTestImage];
     
@@ -148,6 +151,12 @@
     return iPhoneDevice;
 }
 
+-(void)removeAllViewsFromSuperView
+{
+    for (UIView *subview in self.view.subviews) {
+        [subview removeFromSuperview];
+    }
+}
 
 
 #pragma mark - Memory Warning
@@ -160,7 +169,6 @@
 #pragma mark - Debug Methods
 -(void)dropTestImage
 {
-    
     UIImageView *testImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.deviceWidth/2, -100, 50, 50)];
     testImageView.backgroundColor=[UIColor redColor];
     
