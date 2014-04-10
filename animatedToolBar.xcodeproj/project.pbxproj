@@ -22,6 +22,7 @@
 		9C7460D918F6CEDF00C09946 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C7460B818F6CEDB00C09946 /* UIKit.framework */; };
 		9C7460E118F6CEDF00C09946 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9C7460DF18F6CEDF00C09946 /* InfoPlist.strings */; };
 		9C7460E318F6CEDF00C09946 /* animatedToolBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7460E218F6CEDF00C09946 /* animatedToolBarTests.m */; };
+		9CC43AF918F6D49C003765E3 /* iPadPortraitToolBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC43AF818F6D49C003765E3 /* iPadPortraitToolBar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		9C7460DE18F6CEDF00C09946 /* animatedToolBarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "animatedToolBarTests-Info.plist"; sourceTree = "<group>"; };
 		9C7460E018F6CEDF00C09946 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9C7460E218F6CEDF00C09946 /* animatedToolBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = animatedToolBarTests.m; sourceTree = "<group>"; };
+		9CC43AF818F6D49C003765E3 /* iPadPortraitToolBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPadPortraitToolBar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		9C7460BB18F6CEDC00C09946 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9CC43AF618F6D435003765E3 /* images */,
 				9C7460BC18F6CEDC00C09946 /* animatedToolBar-Info.plist */,
 				9C7460BD18F6CEDC00C09946 /* InfoPlist.strings */,
 				9C7460C018F6CEDC00C09946 /* main.m */,
@@ -153,6 +156,22 @@
 				9C7460DF18F6CEDF00C09946 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9CC43AF618F6D435003765E3 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				9CC43AF718F6D490003765E3 /* iPad */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		9CC43AF718F6D490003765E3 /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				9CC43AF818F6D49C003765E3 /* iPadPortraitToolBar.png */,
+			);
+			name = iPad;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +254,7 @@
 				9C7460D018F6CEDD00C09946 /* Images.xcassets in Resources */,
 				9C7460C818F6CEDC00C09946 /* Main_iPhone.storyboard in Resources */,
 				9C7460BF18F6CEDC00C09946 /* InfoPlist.strings in Resources */,
+				9CC43AF918F6D49C003765E3 /* iPadPortraitToolBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +490,7 @@
 				9C7460E818F6CEDF00C09946 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9C7460E918F6CEDF00C09946 /* Build configuration list for PBXNativeTarget "animatedToolBarTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +499,7 @@
 				9C7460EB18F6CEDF00C09946 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
