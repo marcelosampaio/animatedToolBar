@@ -112,11 +112,30 @@
     if (iPhoneDevice) {
         // 4 inch  or 3.5 inch screen size (TO DO)
         if ([orientation isEqualToString:@"Portrait"]) {
-            self.deviceWidth=DEVICE_IPHONE_40_PORTRAIT_WIDTH;
-            self.deviceHeigth=DEVICE_IPHONE_40_PORTRAIT_HEIGHT;
+
+            // Determine 3.5 or 4 inch screen size
+            if (self.view.frame.size.height==DEVICE_IPHONE_40_PORTRAIT_HEIGHT || self.view.frame.size.width==DEVICE_IPHONE_40_PORTRAIT_HEIGHT) {
+                self.deviceWidth=DEVICE_IPHONE_40_PORTRAIT_WIDTH;
+                self.deviceHeigth=DEVICE_IPHONE_40_PORTRAIT_HEIGHT;
+            }
+            else  //  3.5 inch screen size
+            {
+                self.deviceWidth=DEVICE_IPHONE_35_PORTRAIT_WIDTH;
+                self.deviceHeigth=DEVICE_IPHONE_35_PORTRAIT_HEIGHT;
+            }
+            
+            
         } else {
-            self.deviceWidth=DEVICE_IPHONE_40_LANDSCAPE_WIDTH;
-            self.deviceHeigth=DEVICE_IPHONE_40_LANDSCAPE_HEIGHT;
+            // Determine 3.5 or 4 inch screen size
+            if (self.view.frame.size.height==DEVICE_IPHONE_40_LANDSCAPE_HEIGHT || self.view.frame.size.width==DEVICE_IPHONE_40_LANDSCAPE_HEIGHT) {
+                self.deviceWidth=DEVICE_IPHONE_40_LANDSCAPE_WIDTH;
+                self.deviceHeigth=DEVICE_IPHONE_40_LANDSCAPE_HEIGHT;
+            }
+            else
+            {
+                self.deviceWidth=DEVICE_IPHONE_35_LANDSCAPE_WIDTH;
+                self.deviceHeigth=DEVICE_IPHONE_35_LANDSCAPE_HEIGHT;
+            }
         }
 
         
