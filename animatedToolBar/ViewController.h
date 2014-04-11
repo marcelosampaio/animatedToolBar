@@ -14,4 +14,8 @@
 @property float deviceHeigth;
 
 
+@property BOOL toolBarIsVisible;
+@property(nonatomic,strong)NSString *toolBarImageName;
+
+
 @end

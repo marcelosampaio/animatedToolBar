@@ -45,6 +45,10 @@
 
 @synthesize deviceWidth,deviceHeigth;
 
+@synthesize toolBarIsVisible;
+
+@synthesize toolBarImageName;
+
 
 
 #pragma mark - Initialization
@@ -71,7 +75,7 @@
     NSLog(@"DID rotate FROM: %d",fromInterfaceOrientation);
 }
 
-#pragma mark - Orientation Initialization
+#pragma mark - Orientation
 -(void)detectOrientation {
     NSString *orientation;
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
@@ -96,7 +100,7 @@
 #pragma mark - Working Methods
 -(void)setDeviceLogicalSizeForOrientation:(NSString *)orientation
 {
-    NSString *toolBarImage=@"";
+    self.toolBarImageName=@"";
     
     BOOL iPhoneDevice=[self deviceRecognition];
     if (iPhoneDevice) {
@@ -107,13 +111,13 @@
             if (self.view.frame.size.height==DEVICE_IPHONE_40_PORTRAIT_HEIGHT || self.view.frame.size.width==DEVICE_IPHONE_40_PORTRAIT_HEIGHT) {
                 self.deviceWidth=DEVICE_IPHONE_40_PORTRAIT_WIDTH;
                 self.deviceHeigth=DEVICE_IPHONE_40_PORTRAIT_HEIGHT;
-                toolBarImage=DEVICE_IPHONE_40_PORTRAIT_TOOLBAR_IMAGE;
+                self.toolBarImageName=DEVICE_IPHONE_40_PORTRAIT_TOOLBAR_IMAGE;
             }
             else  //  3.5 inch screen size
             {
                 self.deviceWidth=DEVICE_IPHONE_35_PORTRAIT_WIDTH;
                 self.deviceHeigth=DEVICE_IPHONE_35_PORTRAIT_HEIGHT;
-                toolBarImage=DEVICE_IPHONE_35_PORTRAIT_TOOLBAR_IMAGE;
+                self.toolBarImageName=DEVICE_IPHONE_35_PORTRAIT_TOOLBAR_IMAGE;
             }
             
             
@@ -122,13 +126,13 @@
             if (self.view.frame.size.height==DEVICE_IPHONE_40_LANDSCAPE_HEIGHT || self.view.frame.size.width==DEVICE_IPHONE_40_LANDSCAPE_HEIGHT) {
                 self.deviceWidth=DEVICE_IPHONE_40_LANDSCAPE_WIDTH;
                 self.deviceHeigth=DEVICE_IPHONE_40_LANDSCAPE_HEIGHT;
-                toolBarImage=DEVICE_IPHONE_40_LANDSCAPE_TOOLBAR_IMAGE;
+                self.toolBarImageName=DEVICE_IPHONE_40_LANDSCAPE_TOOLBAR_IMAGE;
             }
             else
             {
                 self.deviceWidth=DEVICE_IPHONE_35_LANDSCAPE_WIDTH;
                 self.deviceHeigth=DEVICE_IPHONE_35_LANDSCAPE_HEIGHT;
-                toolBarImage=DEVICE_IPHONE_35_LANDSCAPE_TOOLBAR_IMAGE;
+                self.toolBarImageName=DEVICE_IPHONE_35_LANDSCAPE_TOOLBAR_IMAGE;
             }
         }
     } else {
@@ -136,19 +140,19 @@
         if ([orientation isEqualToString:@"Portrait"]) {
             self.deviceWidth=DEVICE_IPAD_PORTRAIT_WIDTH;
             self.deviceHeigth=DEVICE_IPAD_PORTRAIT_HEIGHT;
-            toolBarImage=DEVICE_IPAD_PORTRAIT_TOOLBAR_IMAGE;
+            self.toolBarImageName=DEVICE_IPAD_PORTRAIT_TOOLBAR_IMAGE;
         } else {
             self.deviceWidth=DEVICE_IPAD_LANDSCAPE_WIDTH;
             self.deviceHeigth=DEVICE_IPAD_LANDSCAPE_HEIGHT;
-            toolBarImage=DEVICE_IPAD_LANDSCAPE_TOOLBAR_IMAGE;
+            self.toolBarImageName=DEVICE_IPAD_LANDSCAPE_TOOLBAR_IMAGE;
         }
     }
 
     // Remove views from super view
-    [self removeAllSubviewsFromView];
+    [self removeToolBarViewFromView];
     
     // Show Tool Bar
-    [self showToolBarWithImage:toolBarImage];
+    [self showToolBarWithImage:self.toolBarImageName autoHide:YES];
     
 }
 
@@ -164,7 +168,7 @@
     return iPhoneDevice;
 }
 
--(void)removeAllSubviewsFromView
+-(void)removeToolBarViewFromView
 {
     for (UIView *subview in self.view.subviews) {
         if (subview.tag==9999) {
@@ -174,18 +178,10 @@
 }
 
 
-#pragma mark - Memory Warning
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Debug Methods
--(void)showToolBarWithImage:(NSString *)toolBarImageName
+-(void)showToolBarWithImage:(NSString *)imageName autoHide:(BOOL)hide
 {
     UIImageView *toolBarImage=[[UIImageView alloc]initWithFrame:CGRectMake(0, -100, self.deviceWidth, 90)];
-    toolBarImage.image=[UIImage imageNamed:toolBarImageName];
+    toolBarImage.image=[UIImage imageNamed:imageName];
     toolBarImage.tag=9999;
     
     [self.view addSubview:toolBarImage];
@@ -200,28 +196,78 @@
      } completion:^(BOOL finished)
      //  Aqui executamos os procedimentos logo apos o termino da animacao
      {
-         // Faz nada por enquanto no completion
-//         [UIView animateWithDuration:0.95f animations:^(void)
-//          // Aqui se faz a animacao
-//          {
-//              CGPoint position=CGPointMake(toolBarImage.center.x,-100);
-//              toolBarImage.center=position;
-//              
-//          } completion:^(BOOL finished)
-//          //  Aqui executamos os procedimentos logo apos o termino da animacao
-//          {
-//              // Faz nada por enquanto no completion
-//          }];
+         if (hide) {
+             [UIView animateWithDuration:0.95f animations:^(void)
+              // Aqui se faz a animacao
+              {
+                  CGPoint position=CGPointMake(toolBarImage.center.x,-100);
+                  toolBarImage.center=position;
+                  
+              } completion:^(BOOL finished)
+              //  Aqui executamos os procedimentos logo apos o termino da animacao
+              {
+                  // Faz nada por enquanto no completion
+              }];
+         }
      }];
     // FIM DA ANIMACAO
     [UIView commitAnimations];
-
     
-    
-    
+    // set flag to NO
+    self.toolBarIsVisible=NO;
     
 }
+
+
+-(void)hideToolBar
+{
+    for (UIView *subView in self.view.subviews) {
+        if (subView.tag==9999) {
+            [UIView animateWithDuration:0.95f animations:^(void)
+             // Aqui se faz a animacao
+             {
+                 CGPoint position=CGPointMake(subView.center.x,-100);
+                 subView.center=position;
+                 
+             } completion:^(BOOL finished)
+             //  Aqui executamos os procedimentos logo apos o termino da animacao
+             {
+                 // Faz nada por enquanto no completion
+             }];
+        }
+    }
+    self.toolBarIsVisible=NO;
+}
+
+#pragma mark - Touch Events
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *touch=[[event allTouches]anyObject];
+    CGPoint location=[touch locationInView:touch.view];
     
+    // Touch must be at the top to be valid
+    if (location.y>100) {
+        return;
+    }
+
+    // tool bar must be hidden otherwise escape from here
+    if (self.toolBarIsVisible) {
+        [self hideToolBar];
+        return;
+    }
+    // Show tool bar
+    [self showToolBarWithImage:self.toolBarImageName autoHide:NO];
+    self.toolBarIsVisible=YES;
+}
+
+#pragma mark - Memory Warning
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
 
 
 @end
