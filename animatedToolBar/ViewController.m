@@ -11,11 +11,11 @@
 // iPhone 3.5'' inch
 #define DEVICE_IPHONE_35_PORTRAIT_WIDTH             320
 #define DEVICE_IPHONE_35_PORTRAIT_HEIGHT            480
-#define DEVICE_IPHONE_35_PORTRAIT_TOOLBAR_IMAGE     @""
+#define DEVICE_IPHONE_35_PORTRAIT_TOOLBAR_IMAGE     @"iPhone35PortraitToolBar"
 
 #define DEVICE_IPHONE_35_LANDSCAPE_WIDTH            480
 #define DEVICE_IPHONE_35_LANDSCAPE_HEIGHT           320
-#define DEVICE_IPHONE_35_LANDSCAPE_TOOLBAR_IMAGE    @""
+#define DEVICE_IPHONE_35_LANDSCAPE_TOOLBAR_IMAGE    @"iPhone35LandscapeToolBar"
 
 // iPhone 4'' inch
 #define DEVICE_IPHONE_40_PORTRAIT_WIDTH             320
@@ -113,6 +113,7 @@
             {
                 self.deviceWidth=DEVICE_IPHONE_35_PORTRAIT_WIDTH;
                 self.deviceHeigth=DEVICE_IPHONE_35_PORTRAIT_HEIGHT;
+                toolBarImage=DEVICE_IPHONE_35_PORTRAIT_TOOLBAR_IMAGE;
             }
             
             
@@ -127,6 +128,7 @@
             {
                 self.deviceWidth=DEVICE_IPHONE_35_LANDSCAPE_WIDTH;
                 self.deviceHeigth=DEVICE_IPHONE_35_LANDSCAPE_HEIGHT;
+                toolBarImage=DEVICE_IPHONE_35_LANDSCAPE_TOOLBAR_IMAGE;
             }
         }
     } else {
