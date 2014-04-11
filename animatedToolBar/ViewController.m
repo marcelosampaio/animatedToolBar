@@ -20,11 +20,11 @@
 // iPhone 4'' inch
 #define DEVICE_IPHONE_40_PORTRAIT_WIDTH             320
 #define DEVICE_IPHONE_40_PORTRAIT_HEIGHT            568
-#define DEVICE_IPHONE_40_PORTRAIT_TOOLBAR_IMAGE     @""
+#define DEVICE_IPHONE_40_PORTRAIT_TOOLBAR_IMAGE     @"iPhone40PortraitToolBar"
 
 #define DEVICE_IPHONE_40_LANDSCAPE_WIDTH            568
 #define DEVICE_IPHONE_40_LANDSCAPE_HEIGHT           320
-#define DEVICE_IPHONE_35_LANDSCAPE_TOOLBAR_IMAGE    @""
+#define DEVICE_IPHONE_40_LANDSCAPE_TOOLBAR_IMAGE    @"iPhone40PortraitToolBar"
 
 
 // iPad
@@ -107,6 +107,7 @@
             if (self.view.frame.size.height==DEVICE_IPHONE_40_PORTRAIT_HEIGHT || self.view.frame.size.width==DEVICE_IPHONE_40_PORTRAIT_HEIGHT) {
                 self.deviceWidth=DEVICE_IPHONE_40_PORTRAIT_WIDTH;
                 self.deviceHeigth=DEVICE_IPHONE_40_PORTRAIT_HEIGHT;
+                toolBarImage=DEVICE_IPHONE_40_PORTRAIT_TOOLBAR_IMAGE;
             }
             else  //  3.5 inch screen size
             {
@@ -120,6 +121,7 @@
             if (self.view.frame.size.height==DEVICE_IPHONE_40_LANDSCAPE_HEIGHT || self.view.frame.size.width==DEVICE_IPHONE_40_LANDSCAPE_HEIGHT) {
                 self.deviceWidth=DEVICE_IPHONE_40_LANDSCAPE_WIDTH;
                 self.deviceHeigth=DEVICE_IPHONE_40_LANDSCAPE_HEIGHT;
+                toolBarImage=DEVICE_IPHONE_40_LANDSCAPE_TOOLBAR_IMAGE;
             }
             else
             {
@@ -197,17 +199,17 @@
      //  Aqui executamos os procedimentos logo apos o termino da animacao
      {
          // Faz nada por enquanto no completion
-         [UIView animateWithDuration:0.95f animations:^(void)
-          // Aqui se faz a animacao
-          {
-              CGPoint position=CGPointMake(toolBarImage.center.x,-100);
-              toolBarImage.center=position;
-              
-          } completion:^(BOOL finished)
-          //  Aqui executamos os procedimentos logo apos o termino da animacao
-          {
-              // Faz nada por enquanto no completion
-          }];
+//         [UIView animateWithDuration:0.95f animations:^(void)
+//          // Aqui se faz a animacao
+//          {
+//              CGPoint position=CGPointMake(toolBarImage.center.x,-100);
+//              toolBarImage.center=position;
+//              
+//          } completion:^(BOOL finished)
+//          //  Aqui executamos os procedimentos logo apos o termino da animacao
+//          {
+//              // Faz nada por enquanto no completion
+//          }];
      }];
     // FIM DA ANIMACAO
     [UIView commitAnimations];

@@ -24,6 +24,8 @@
 		9C7460E318F6CEDF00C09946 /* animatedToolBarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C7460E218F6CEDF00C09946 /* animatedToolBarTests.m */; };
 		9CC43AFB18F823FD003765E3 /* iPadPortraitToolBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC43AFA18F823FD003765E3 /* iPadPortraitToolBar.png */; };
 		9CC43AFD18F82482003765E3 /* iPadLandscapeToolBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC43AFC18F82482003765E3 /* iPadLandscapeToolBar.png */; };
+		9CC43B0318F82946003765E3 /* iPhone40PortraitToolBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC43B0218F82946003765E3 /* iPhone40PortraitToolBar.png */; };
+		9CC8D6D818F86A5F001BD04F /* iPhone40LandscapeToolBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CC8D6D718F86A5F001BD04F /* iPhone40LandscapeToolBar.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		9C7460E218F6CEDF00C09946 /* animatedToolBarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = animatedToolBarTests.m; sourceTree = "<group>"; };
 		9CC43AFA18F823FD003765E3 /* iPadPortraitToolBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPadPortraitToolBar.png; sourceTree = "<group>"; };
 		9CC43AFC18F82482003765E3 /* iPadLandscapeToolBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPadLandscapeToolBar.png; sourceTree = "<group>"; };
+		9CC43B0218F82946003765E3 /* iPhone40PortraitToolBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone40PortraitToolBar.png; sourceTree = "<group>"; };
+		9CC8D6D718F86A5F001BD04F /* iPhone40LandscapeToolBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iPhone40LandscapeToolBar.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 		9CC43AF618F6D435003765E3 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9CC43AFE18F82848003765E3 /* iPhone */,
 				9CC43AF718F6D490003765E3 /* iPad */,
 			);
 			name = images;
@@ -175,6 +180,23 @@
 				9CC43AFA18F823FD003765E3 /* iPadPortraitToolBar.png */,
 			);
 			name = iPad;
+			sourceTree = "<group>";
+		};
+		9CC43AFE18F82848003765E3 /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				9CC43AFF18F82863003765E3 /* 4_0 inch */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		9CC43AFF18F82863003765E3 /* 4_0 inch */ = {
+			isa = PBXGroup;
+			children = (
+				9CC43B0218F82946003765E3 /* iPhone40PortraitToolBar.png */,
+				9CC8D6D718F86A5F001BD04F /* iPhone40LandscapeToolBar.png */,
+			);
+			name = "4_0 inch";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +279,9 @@
 				9C7460D018F6CEDD00C09946 /* Images.xcassets in Resources */,
 				9C7460C818F6CEDC00C09946 /* Main_iPhone.storyboard in Resources */,
 				9CC43AFD18F82482003765E3 /* iPadLandscapeToolBar.png in Resources */,
+				9CC8D6D818F86A5F001BD04F /* iPhone40LandscapeToolBar.png in Resources */,
 				9C7460BF18F6CEDC00C09946 /* InfoPlist.strings in Resources */,
+				9CC43B0318F82946003765E3 /* iPhone40PortraitToolBar.png in Resources */,
 				9CC43AFB18F823FD003765E3 /* iPadPortraitToolBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
