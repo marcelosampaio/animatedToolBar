@@ -32,8 +32,6 @@
 #define DEVICE_IPAD_LANDSCAPE_HEIGHT                768
 
 
-
-
 @interface ViewController ()
 
 @end
@@ -45,6 +43,7 @@
 
 
 #pragma mark - Initialization
+
 -(void)viewWillAppear:(BOOL)animated {
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
@@ -60,7 +59,6 @@
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     NSLog(@"WILL rotate TO: %d",toInterfaceOrientation);
-    
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -70,32 +68,19 @@
 
 #pragma mark - Orientation Initialization
 -(void)detectOrientation {
-
-    
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait)
-    {
-        NSLog(@"  detected: UIDeviceOrientationPortrait");
-        [self setDeviceLogicalSizeFor:@"Portrait"];
+    NSString *orientation;
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
+        orientation=@"Portrait";
+    } else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown) {
+        orientation=@"Portrait";
+    } else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        orientation=@"Landscape";
+    } else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+        orientation=@"Landscape";
+    }else{
+        orientation=@"Portrait";
     }
-    
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown)
-    {
-        NSLog(@"  detected: UIDeviceOrientationPortraitUpsideDown");
-        [self setDeviceLogicalSizeFor:@"Portrait"];
-    }
-
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft)
-    {
-        NSLog(@"  detected: UIDeviceOrientationLandscapeLeft");
-        [self setDeviceLogicalSizeFor:@"Landscape"];
-    }
-    
-    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
-    {
-        NSLog(@"  detected: UIDeviceOrientationLandscapeRight");
-        [self setDeviceLogicalSizeFor:@"Landscape"];
-    }
-    
+    [self setDeviceLogicalSizeForOrientation:orientation];
 }
 
 //- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -103,11 +88,10 @@
 //}
 
 
-
 #pragma mark - Working Methods
-
--(void)setDeviceLogicalSizeFor:(NSString *)orientation
+-(void)setDeviceLogicalSizeForOrientation:(NSString *)orientation
 {
+    NSLog(@"setDeviceLogicalSize Orientatio=%@",orientation);
     BOOL iPhoneDevice=[self deviceRecognition];
     if (iPhoneDevice) {
         // 4 inch  or 3.5 inch screen size (TO DO)
@@ -137,8 +121,6 @@
                 self.deviceHeigth=DEVICE_IPHONE_35_LANDSCAPE_HEIGHT;
             }
         }
-
-        
     } else {
         // iPad
         if ([orientation isEqualToString:@"Portrait"]) {
@@ -151,7 +133,7 @@
     }
 
     // Remove views from super view
-    [self removeAllViewsFromSuperView];
+    [self removeAllSubviewsFromView];
     
     // Debug purposes
     [self dropTestImage];
@@ -170,7 +152,7 @@
     return iPhoneDevice;
 }
 
--(void)removeAllViewsFromSuperView
+-(void)removeAllSubviewsFromView
 {
     for (UIView *subview in self.view.subviews) {
         [subview removeFromSuperview];
@@ -188,7 +170,9 @@
 #pragma mark - Debug Methods
 -(void)dropTestImage
 {
-    UIImageView *testImageView=[[UIImageView alloc]initWithFrame:CGRectMake(self.deviceWidth/2, -100, 50, 50)];
+    NSLog(@"width=%f  height=%f",self.deviceWidth,self.deviceHeigth);
+    
+    UIImageView *testImageView=[[UIImageView alloc]initWithFrame:CGRectMake((self.deviceWidth/2)-25, -100, 50, 50)];
     testImageView.backgroundColor=[UIColor redColor];
     
     [self.view addSubview:testImageView];
@@ -198,7 +182,6 @@
      // Aqui se faz a animacao
      {
          CGPoint position=CGPointMake(testImageView.center.x,self.deviceHeigth);
-         
          testImageView.center=position;
          
      } completion:^(BOOL finished)
